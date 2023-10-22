@@ -2,23 +2,51 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
     private Animal[] animals;
+    private Aquatic[] aquaticAnimals;
     private int nbr_animal;
     private String name;
     private String city;
-    final int NBR_CAGES = 25;
+    private final int NBR_CAGES = 25;
     public void setName(String name){
-        if (name.isEmpty()){
-            System.out.println("Veuillez saisir un nom ") ;
-        }
-        else {
+        if (!name.isEmpty()){
             this.name = name ;
         }
     }
 
+
     public Zoo(String name, String city) {
+        if (!name.isEmpty()) {
+            this.name = name ;
+        }
         animals = new Animal[NBR_CAGES];
+        aquaticAnimals = new Aquatic[15];
         this.name = name;
         this.city = city;
+    }
+    public float maxPenguinSwimmingDepth(){
+        float max = 0;
+        for (Aquatic animal : aquaticAnimals){
+            if(animal instanceof Penguin){
+                Penguin penguin = (Penguin) animal;
+                float depth = penguin.getSwimmingDepth();
+                if (depth > max) {
+                    max = depth;
+                }
+            }
+        } return max;
+    }
+    public void displayNumberOfAquaticsByType(){
+        int nbP = 0 ;
+        int nbD = 0;
+        for (Aquatic animal :aquaticAnimals) {
+            if(animal instanceof Penguin){
+                nbP++;
+            }
+            if(animal instanceof Dolphin){
+                nbD++;
+            }
+        }
+        System.out.println(nbP + "penguin" + nbD + "dauphin");
     }
 
     public void displayZoo() {
@@ -27,8 +55,10 @@ public class Zoo {
     }
 
     public boolean addAnimal(Animal animal) {
+        if(this.isZooFull() == false){
+
         for (int i = 0; i < animals.length; i++) {
-            if (animals[i] == null && isZooFull()==false ) {
+            if (animals[i] == null ) {
                 animals[i] = animal;
                 nbr_animal++;
 
@@ -37,7 +67,16 @@ public class Zoo {
 
 
         }
+        }
         return false;
+    }
+    public void addAquaticAnimal(Aquatic aquatic){
+        for (int i=0; i<aquaticAnimals.length;i++){
+            if (aquaticAnimals[i] == null){
+                aquaticAnimals[i] = aquatic;
+                break;
+            }
+        }
     }
 
     public void showAnimal() {

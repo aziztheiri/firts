@@ -1,17 +1,17 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Animal {
-    private String family;
-    private String name;
-    private int age;
-    private boolean isMammal ;
+    public String family;
+    public String name;
+    public int age;
+    public boolean isMammal ;
     public String getName(){
         return name;
 
     }
     public void setAge(int age){
         if (age < 0 ){
-            System.out.println("Veuillez saisir un age valide ");
+            this.age = 0;
         }
         else {
             this.age = age ;
@@ -19,9 +19,14 @@ public class Animal {
     }
     public Animal(String family, String name, int age, boolean
             isMammal) {
+        if (age < 0 ){
+            this.age = 0;
+        }
+        else {
+            this.age = age ;
+        }
         this.family = family;
         this.name = name;
-        this.age = age;
         this.isMammal = isMammal;
     }
     public void displayAnimal() {

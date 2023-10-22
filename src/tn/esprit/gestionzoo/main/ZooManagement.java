@@ -1,8 +1,9 @@
 package tn.esprit.gestionzoo.main;
-import tn.esprit.gestionzoo.entities.Zoo;
-import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.*;
+
 import java.util.Scanner;
 public class ZooManagement {
+
     public static void main(String[] args) {
         //Scanner scanner = new Scanner(System.in);
         //int nbrCages ;
@@ -44,7 +45,24 @@ public class ZooManagement {
         //System.out.println(myZoo2.animalCount());
         //tn.esprit.gestionzoo.entities.Zoo newzoo = tn.esprit.gestionzoo.entities.Zoo.comparerZoo(myZoo,myZoo2);
         //System.out.println("The zoo that has more animals is : " + newzoo);
-        myZoo.comparerZoo(myZoo,myZoo2);
+        //myZoo.comparerZoo(myZoo,myZoo2);
+        //Aquatic A = new Aquatic("zoo","aquaa","dkdkdk",15,true);
+        Penguin P = new Penguin("zoo","pengou","pppp",15,false,40);
+        Penguin P2 = new Penguin("zoo","fff","kkk",15,false,30);
+        Penguin P3 = new Penguin("zoo","zeze","klfffk",15,false,60);
+
+        Dolphin D = new Dolphin("zoo","dolphou","dddddd",15,true,60);
+        Terrestrial T = new Terrestrial("fahd","terrou",15,true,4);
+        //System.out.println(A+ "\n");
+        myZoo.addAquaticAnimal(P);
+        myZoo.addAquaticAnimal(P2);
+        myZoo.addAquaticAnimal(P3);
+        myZoo.addAquaticAnimal(D);
+        P.swim();
+        D.swim();
+        System.out.println(myZoo.maxPenguinSwimmingDepth());
+        myZoo.displayNumberOfAquaticsByType();
+
 
     }
 }
