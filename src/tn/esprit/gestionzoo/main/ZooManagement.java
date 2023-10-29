@@ -4,7 +4,7 @@ import tn.esprit.gestionzoo.entities.*;
 import java.util.Scanner;
 public class ZooManagement {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ZooFullException {
         //Scanner scanner = new Scanner(System.in);
         //int nbrCages ;
         //String zooName;
@@ -16,7 +16,7 @@ public class ZooManagement {
         //}while (zooName.length() < 3 );
        // System.out.println( zooName + " comporte " +  nbrCages  +  " cages");
 
-        Animal lion = new Animal("XXX","lion",14,true);
+        Animal lion = new Animal("XXX","lion",-18,true);
         Animal lion1 = new Animal("XXX","lion",14,true);
         Animal lion2 = new Animal("XXX","lion",14,true);
         Animal lion3 = new Animal("XXX","lion",14,true);
@@ -30,11 +30,28 @@ public class ZooManagement {
         //System.out.println(myZoo.toString()); //affichage d'un code ?
         //System.out.println(myZoo.name + myZoo.city + myZoo.nbrCages);
         //System.out.println(lion.family + lion.name + lion.age + lion.isMammal);
-        myZoo.addAnimal(lion);
-        myZoo2.addAnimal(lion1);
-        myZoo2.addAnimal(lion2);
-        myZoo2.addAnimal(lion3);
-        myZoo.addAnimal(lion4);
+        try {
+            myZoo.addAnimal(lion);
+            System.out.println("Number of animals: " + myZoo.getNbrAnimal());
+
+            myZoo.addAnimal(lion1);
+            System.out.println("Number of animals: " + myZoo.getNbrAnimal());
+
+            myZoo.addAnimal(lion2);
+            System.out.println("Number of animals: " + myZoo.getNbrAnimal());
+
+            myZoo.addAnimal(lion3);
+            System.out.println("Number of animals: " + myZoo.getNbrAnimal());
+
+            myZoo.addAnimal(lion4);
+            System.out.println("Number of animals: " + myZoo.getNbrAnimal());
+        } catch (ZooFullException e) {
+            System.out.println("ZooFullException: " + e.getMessage());
+        } catch (InvalidAgeException ex) {
+            System.out.println("InvalidAgeException: " + ex.getMessage());
+        }
+
+
 
 
         //myZoo.showAnimal();
@@ -59,6 +76,8 @@ public class ZooManagement {
         myZoo.addAquaticAnimal(P3);
         myZoo.addAquaticAnimal(D);
         P.swim();
+        P2.swim();
+        P3.swim();
         D.swim();
         System.out.println(myZoo.maxPenguinSwimmingDepth());
         myZoo.displayNumberOfAquaticsByType();

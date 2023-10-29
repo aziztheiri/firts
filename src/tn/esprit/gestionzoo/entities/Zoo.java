@@ -2,24 +2,26 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
     private Animal[] animals;
-    private Aquatic[] aquaticAnimals;
+    protected Aquatic[] aquaticAnimals;
     private int nbr_animal;
     private String name;
     private String city;
-    private final int NBR_CAGES = 25;
+    private final int NBR_CAGES = 3;
     public void setName(String name){
         if (!name.isEmpty()){
             this.name = name ;
         }
     }
 
-
+    public int getNbrAnimal() {
+        return nbr_animal;
+    }
     public Zoo(String name, String city) {
         if (!name.isEmpty()) {
             this.name = name ;
         }
         animals = new Animal[NBR_CAGES];
-        aquaticAnimals = new Aquatic[15];
+        aquaticAnimals = new Aquatic[10];
         this.name = name;
         this.city = city;
     }
@@ -54,21 +56,26 @@ public class Zoo {
         System.out.println(this.name + this.city);
     }
 
-    public boolean addAnimal(Animal animal) {
-        if(this.isZooFull() == false){
-
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+        //if(this.isZooFull() == false){
+        if (nbr_animal >= NBR_CAGES) {
+           throw new ZooFullException("Zoo is full. Cannot add more animals.");
+        }
+        if (animal.getAge() < 0) {
+            throw new InvalidAgeException("Invalid age: Age cannot be negative.");
+        }
         for (int i = 0; i < animals.length; i++) {
             if (animals[i] == null ) {
                 animals[i] = animal;
                 nbr_animal++;
-
-                return true;
-            }
+                return;
+               // return true;
+           // }
 
 
         }
         }
-        return false;
+        //return false;
     }
     public void addAquaticAnimal(Aquatic aquatic){
         for (int i=0; i<aquaticAnimals.length;i++){

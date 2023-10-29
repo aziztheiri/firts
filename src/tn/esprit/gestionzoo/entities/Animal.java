@@ -9,22 +9,25 @@ public class Animal {
         return name;
 
     }
+    public int getAge(){
+        return this.age;
+    }
     public void setAge(int age){
-        if (age < 0 ){
+        /*if (age < 0 ){
             this.age = 0;
-        }
-        else {
+        }*/
+        //else {
             this.age = age ;
-        }
+        //}
     }
     public Animal(String family, String name, int age, boolean
             isMammal) {
-        if (age < 0 ){
+      /*  if (age < 0 ){
             this.age = 0;
         }
-        else {
+        else {*/
             this.age = age ;
-        }
+
         this.family = family;
         this.name = name;
         this.isMammal = isMammal;
